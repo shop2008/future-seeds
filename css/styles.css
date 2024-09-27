@@ -378,3 +378,83 @@ form {
 .gallery-swiper .swiper-pagination-bullet-active {
     background-color: var(--primary-color);
 }
+
+/* Contact Us Page */
+
+.contact-hero{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px;
+
+}
+
+
+
+.text_container h1{
+    color: var(--secondary-color);
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.text_container p{
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 200;
+
+}
+
+.form_container{
+    width: 55%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.get_in_touch{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-color);
+    text-align: center;
+
+}
+
+.form-group .formko{
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+
+.form-control::placeholder {
+    color: #999999;  /* Change placeholder color to #999999 */
+    opacity: 1;      /* Ensures full visibility of the color */
+}
+
+#message::placeholder {
+    color: #999999;  /* Change placeholder color to #999999 */
+    opacity: 1;      /* Ensure full opacity */
+}
+
+.submit_button{
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    margin-top: 24px;
+    height: auto;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.submit_button:hover{
+    background-color: #e3461b;
+    color: #ffffff; 
+}
