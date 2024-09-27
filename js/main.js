@@ -2,6 +2,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Include header and footer
   includeHTML("body > header", "header.html", setActiveNavItem);
   includeHTML("body > footer", "footer.html");
+
+  const gallerySwiper = new Swiper(".gallery-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 });
 
 function includeHTML(selector, filePath, callback) {
@@ -26,6 +44,8 @@ function setActiveNavItem() {
   for (let i = 0; i < menuLength; i++) {
     if (menuItems[i].href === currentLocation) {
       menuItems[i].classList.add("active");
+    } else {
+      menuItems[i].classList.remove("active");
     }
   }
 }
