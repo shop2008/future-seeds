@@ -180,3 +180,143 @@ footer {
     border-radius: 8px;
     margin-bottom: 20px;
 }
+
+.charity-section {
+    display: flex; /* Aligns the content side-by-side */
+    align-items: center; /* Vertically centers the content */
+    justify-content: space-between; /* Ensures equal space between the content and image */
+    padding: 50px 20px; /* Adjusts the padding around the section */
+    background-color: var(--background-color); /* Uses the background color from your theme */
+}
+
+.charity-content {
+    max-width: 50%; /* Sets the content to occupy half of the space */
+    padding-right: 20px; /* Adds space between the content and the image */
+}
+
+.charity-content h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Matches the primary theme color */
+}
+
+.charity-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--text-color); /* Matches the primary text color */
+}
+
+.donate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color); /* Uses the secondary theme color */
+    color: #fff; /* White text for contrast */
+    text-decoration: none; /* Removes underline from the link */
+    border-radius: 5px; /* Rounded corners for the button */
+    font-size: 16px;
+}
+
+.charity-image {
+    max-width: 45%; /* Sets the image container to occupy 45% of the width */
+    text-align: right; /* Aligns the image to the right */
+}
+
+.charity-image img {
+    width: 100%; /* Ensures the image takes up the full width of the container */
+    height: auto; /* Keeps the aspect ratio intact */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .charity-section {
+        flex-direction: column; /* Stacks content vertically */
+        text-align: center; /* Centers the content */
+    }
+
+    .charity-content {
+        max-width: 100%; /* Makes content take up the full width */
+        padding-right: 0; /* Removes right padding */
+    }
+
+    .charity-image {
+        max-width: 100%; /* Makes image take up the full width */
+        margin-top: 20px; /* Adds spacing between the image and content */
+    }
+
+    .charity-image img {
+        width: 100%; /* Ensures the image scales to full width on smaller screens */
+    }
+}
+
+.featured-project-section {
+    background-color: var(--background-color);
+    padding: 60px 20px;
+  }
+  
+  .featured-project-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .featured-project-image {
+    max-width: 25%;
+  }
+  
+  .featured-project-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image scales without distortion */
+  }
+  
+  .featured-project-text {
+    max-width: 45%;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .featured-project-text h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Uses primary color for the heading */
+  }
+  
+  .featured-project-text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: var(--text-color); /* Uses main text color */
+  }
+  
+  .donate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .featured-project-content {
+      flex-direction: column; /* Stack items vertically */
+      text-align: center;
+    }
+  
+    .featured-project-image {
+      max-width: 80%;
+      margin: 20px auto; /* Adds space between elements */
+    }
+  
+    .featured-project-text {
+      max-width: 100%; /* Full width for text on smaller screens */
+      padding: 0;
+    }
+  }
+  
+  
+  
