@@ -175,8 +175,6 @@ footer {
 }
 .mv img {
     width: 100%;
-    
-    
     border-radius: 8px;
     margin-bottom: 20px;
 }
@@ -319,4 +317,64 @@ footer {
   }
   
   
-  
+  /* Get Involved Page Styles */
+.get-involved-hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.get-involved-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.donation-form {
+    padding: 60px 0;
+}
+
+.card {
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Swiper Gallery Styles */
+.gallery-swiper {
+    width: 100%;
+    height: 500px;
+}
+
+.gallery-swiper .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-swiper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-swiper .swiper-button-next,
+.gallery-swiper .swiper-button-prev {
+    color: var(--primary-color);
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+}
