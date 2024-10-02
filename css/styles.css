@@ -580,3 +580,104 @@ form {
     display: none; /* Hide invalid feedback if valid */
 }
 
+
+
+/* Styling adjustments for the new donation form layout */
+/* Styling adjustments for the new donation form layout */
+.donation-options {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Adds spacing between buttons */
+    flex-wrap: wrap; /* Ensures that buttons wrap properly on smaller screens */
+}
+
+.card {
+    background-color: #f9f5e8; /* Light background for donation cards */
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 20px; /* Consistent padding inside the card */
+    border-radius: 10px; /* Rounded corners for a more modern look */
+    margin-bottom: 2rem; /* Space between cards */
+}
+
+/* Center the donate container and all content */
+.donation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80vh; /* Ensures the form takes up most of the viewport height */
+}
+
+.form_container {
+    width: 100%;
+    max-width: 600px; /* Center and limit the form container width */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.btn-group .btn {
+    width: 120px; /* Wider button size for donation amounts */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px; /* Rounded corners for buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    background-color: var(--primary-color); /* Hover color to match primary color */
+    color: white;
+}
+
+#customAmount {
+    width: 150px; /* Custom amount input size */
+}
+
+.modal-header {
+    background-color: #00715D; /* Consistent modal header color */
+    color: white;
+}
+
+#amountAlert {
+    margin-top: 1rem; /* Space above the alert */
+    font-size: 14px;
+    color: #E17153; /* Use secondary color for alerts */
+}
+
+/* Responsive Design for donation layout */
+@media (max-width: 768px) {
+    .donation-options {
+        flex-direction: column; /* Stack the buttons vertically on smaller screens */
+    }
+
+    .btn-group .btn {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem; /* Adds spacing between form groups */
+}
+
+.donation-type {
+    margin-bottom: 1.5rem; /* Adds space between the donation type and the amount */
+}
+
+.donation-header {
+    text-align: center;
+    margin: 0 auto; /* Center the container */
+    padding: 20px 0; /* Add some padding for spacing */
+}
+
+.donation-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color); /* Optional: Make sure the color matches your theme */
+}
+
+.donation-header p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color); /* Optional: Use your theme's text color */
+}
