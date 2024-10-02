@@ -83,12 +83,15 @@ footer {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     transition: background-color 0.3s ease, transform 0.2s ease;
+    --bs-btn-active-bg: var(--secondary-color);
+    --bs-btn-active-border-color: var(--secondary-color);
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     filter: brightness(90%);
+    box-shadow: none;
 }
 
 /* Header Styles */
@@ -322,7 +325,7 @@ footer {
 .get-involved-hero {
     background-color: var(--primary-color);
     color: white;
-    padding: 80px 0;
+    padding: 10% 0;
     text-align: center;
 }
 

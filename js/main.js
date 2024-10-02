@@ -1,49 +1,59 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Include header and footer
+// DOM Content Loaded Event Listener
+document.addEventListener("DOMContentLoaded", initializeApp);
+
+// Global Variables
+let currentPathname = location.pathname;
+
+// Main Initialization Function
+function initializeApp() {
   includeHTML("body > header", "header.html", setActiveNavItem);
   includeHTML("body > footer", "footer.html");
-
-  // Handle navigation clicks
-  document.body.addEventListener("click", function (event) {
-    // Check if the clicked element is a navigation link
-    if (event.target.matches("a.nav-link")) {
-      event.preventDefault(); // Prevent the default link behavior
-      const url = event.target.getAttribute("href"); // Get the URL from the link
-      console.log(`Navigating to ${url}`);
-      loadContent(url); // Load the content for the new URL
-      history.pushState(null, null, url); // Update the browser history
-    }
-  });
-
-  // Handle back/forward navigation
-  window.addEventListener("popstate", function () {
-    console.log(`Popstate event: navigating to ${location.pathname}`);
-    loadContent(location.pathname); // Load content based on the current URL
-  });
-
-  // Initial content load
-  console.log(`Initial load: navigating to ${location.pathname}`);
-  loadContent(location.pathname); // Load content for the initial page load
-});
-
-// Function to include HTML content from a file into a specified element
-function includeHTML(selector, filePath, callback) {
-  const element = document.querySelector(selector);
-  if (!element) return;
-
-  console.log(`Including HTML from ${filePath} into ${selector}`);
-  fetch(filePath)
-    .then((response) => response.text())
-    .then((data) => {
-      element.outerHTML = data; // Replace the element's outer HTML with the fetched content
-      if (callback && typeof callback === "function") {
-        callback(); // Call the callback function if provided
-      }
-    })
-    .catch((error) => console.error(`Error loading ${filePath}:`, error));
+  setupEventListeners();
 }
 
-// Function to load content dynamically into the main element
+// Event Listeners Setup
+function setupEventListeners() {
+  document.body.addEventListener("click", handleNavigation);
+  window.addEventListener("popstate", handlePopState);
+}
+
+// Navigation Handler
+function handleNavigation(event) {
+  if (
+    event.target.matches("a.nav-link") ||
+    event.target.matches("a[href='contact.html']") ||
+    event.target.matches("a[href='about.html']") ||
+    event.target.matches("a[href='projects.html']") ||
+    event.target.matches("a[href='get-involved.html']")
+  ) {
+    event.preventDefault();
+    const url = event.target.getAttribute("href");
+    navigateTo(url);
+  } else {
+    console.log(
+      `Not a navigation link or contact link: ${event.target.tagName}`
+    );
+  }
+}
+
+// Navigate to a new URL
+function navigateTo(url) {
+  console.log(`Navigating to ${url}`);
+  loadContent(url);
+  history.pushState(null, null, url);
+}
+
+// Handle Browser Back/Forward
+function handlePopState(event) {
+  const newPathname = location.pathname;
+  console.log(
+    `Popstate event: considering navigation from ${currentPathname} to ${newPathname}`
+  );
+  loadContent(newPathname);
+  currentPathname = newPathname;
+}
+
+// Load Content
 function loadContent(url) {
   const main = document.querySelector("main");
   console.log(`Loading content from ${url}`);
@@ -52,14 +62,32 @@ function loadContent(url) {
     .then((data) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(data, "text/html");
-      main.innerHTML = doc.querySelector("main").innerHTML; // Update the main element's content
-      setActiveNavItem(); // Update the active navigation item
-      initializeSwiper(); // Reinitialize Swiper after content load
+      main.innerHTML = doc.querySelector("main").innerHTML;
+      setActiveNavItem();
+      initializeSwiper();
+      window.scrollTo(0, 0);
     })
     .catch((error) => console.error(`Error loading ${url}:`, error));
 }
 
-// Function to set the active navigation item based on the current URL
+// Include HTML Content
+function includeHTML(selector, filePath, callback) {
+  const element = document.querySelector(selector);
+  if (!element) return;
+
+  console.log(`Including HTML from ${filePath} into ${selector}`);
+  fetch(filePath)
+    .then((response) => response.text())
+    .then((data) => {
+      element.outerHTML = data;
+      if (callback && typeof callback === "function") {
+        callback();
+      }
+    })
+    .catch((error) => console.error(`Error loading ${filePath}:`, error));
+}
+
+// Set Active Navigation Item
 function setActiveNavItem() {
   const currentLocation = location.href;
   const menuItems = document.querySelectorAll("nav .nav-link");
@@ -68,27 +96,25 @@ function setActiveNavItem() {
     currentLocation.endsWith("/") || currentLocation.endsWith("/index.html");
 
   console.log(`Setting active navigation item for ${currentLocation}`);
-  for (let i = 0; i < menuLength; i++) {
-    const menuItem = menuItems[i];
-
-    if ((isRootPage && i === 0) || menuItem.href === currentLocation) {
-      menuItem.classList.add("active"); // Add active class to the current menu item
+  menuItems.forEach((menuItem, index) => {
+    if ((isRootPage && index === 0) || menuItem.href === currentLocation) {
+      menuItem.classList.add("active");
     } else {
-      menuItem.classList.remove("active"); // Remove active class from other menu items
+      menuItem.classList.remove("active");
     }
-  }
+  });
 }
 
-// Function to initialize the Swiper instance
+// Initialize Swiper
 function initializeSwiper() {
   const swiperContainer = document.querySelector(".gallery-swiper");
   if (!swiperContainer) {
     console.log("No Swiper container found on this page.");
-    return; // Exit if no Swiper container is found
+    return;
   }
 
   console.log("Initializing Swiper");
-  const gallerySwiper = new Swiper(".gallery-swiper", {
+  new Swiper(".gallery-swiper", {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,
