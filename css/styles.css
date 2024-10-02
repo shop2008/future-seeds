@@ -382,14 +382,32 @@ form {
 /* Contact Us Page */
 
 .contact-hero{
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 48px;
+    justify-content: space-between; */
+    padding: 60px;
 
 }
 
 
+
+.text_container{
+    margin-bottom: 16px;
+    /* flex: 1; */
+}
+
+.map_container{
+    /* flex: 1; */
+    margin-top: 16px;
+}
+
+.map_container iframe {
+    width: 100%;
+    height: 350px; 
+    border-radius: 8px; 
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
 
 .text_container h1{
     color: var(--secondary-color);
@@ -405,12 +423,16 @@ form {
 
 }
 
+
+
 .form_container{
-    width: 55%;
+    max-width: 600px;
+    width: 100%;
     background-color: #ffffff;
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 24px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
 }
 
 .get_in_touch{
@@ -426,6 +448,7 @@ form {
     font-size: 18px;
     margin-top: 12px;
     margin-bottom: 4px;
+    color: #4e4d4d;
 }
 
 
@@ -434,10 +457,26 @@ form {
     opacity: 1;      /* Ensures full visibility of the color */
 }
 
-#message::placeholder {
-    color: #999999;  /* Change placeholder color to #999999 */
-    opacity: 1;      /* Ensure full opacity */
+
+
+.form-control,
+#message {
+    margin-bottom: 16px; /* Add spacing between form elements */
+    padding: 10px;       /* Increase padding for input fields */
+    border-radius: 8px;  /* Slightly round input corners */
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease; /* Add transition for focus effect */
 }
+
+/* Input focus styles */
+.form-control:focus,
+#message:focus {
+    border-color: var(--secondary-color); /* Change border color on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on focus */
+}
+
+
 
 .submit_button{
     width: 100%;
@@ -447,7 +486,7 @@ form {
     border: none;
     margin-top: 24px;
     height: auto;
-    padding: 8px;
+    padding: 12px;
     font-size: 18px;
     font-weight: 400;
     cursor: pointer;
@@ -456,5 +495,80 @@ form {
 
 .submit_button:hover{
     background-color: #e3461b;
+    /* transform: scale(1.02); */
     color: #ffffff; 
 }
+
+/* Validation feedback (invalid fields) */
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.is-invalid ~ .invalid-feedback {
+    display: block;
+    color: #dc3545;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* pop design */
+
+.modal-content {
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+
+
+.modal-title {
+    font-size: 20px; 
+    font-weight: 600; 
+    text-align: center;
+}
+
+.modal-body {
+    color: #4e4d4d;
+    font-size: 18px; /* Standard font size */
+    font-weight: lighter;
+    padding: 24px; /* Add padding for spacing */
+}
+
+.modal-footer {
+    border-top: none; /* Remove the default border */
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center; /* Center the buttons */
+}
+
+.modal-footer .btn-secondary {
+    background-color: var(--secondary-color);
+    color: #ffffff; 
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px; 
+    border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #e3461b; /* Change to a slightly darker shade on hover */
+}
+
+/* Modal Close Button */
+.btn-close {
+    color: #e02b2b;
+    opacity: 1;
+}
+
+.btn-close:hover {
+    color: #cccccc;
+}
+
+.is-valid {
+    border-color: #28a745; /* Green border for valid input */
+}
+
+.is-valid ~ .invalid-feedback {
+    display: none; /* Hide invalid feedback if valid */
+}
+
