@@ -152,7 +152,11 @@ function validateEmail() {
 
 function validateName() {
   const name = document.getElementById("name");
-  if (name.value.trim().length >= 2) {
+  const nameValue = name.value.trim();
+
+  const alphabetRegex = /^[a-zA-Z\s]*$/;
+
+  if (nameValue.length >=2 && alphabetRegex.test(nameValue)) {
     name.classList.add("is-valid");
     name.classList.remove("is-invalid");
   } else {
@@ -160,6 +164,16 @@ function validateName() {
     name.classList.remove("is-valid");
   }
 }
+
+
+//   if (name.value.trim().length >= 2) {
+//     name.classList.add("is-valid");
+//     name.classList.remove("is-invalid");
+//   } else {
+//     name.classList.add("is-invalid");
+//     name.classList.remove("is-valid");
+//   }
+// }
 
 function validateMessage() {
   const message = document.getElementById("message");
