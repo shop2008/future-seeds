@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", initializeApp);
 
 // Global Variables
 let currentPathname = location.pathname;
+let isLoading = false;
 
 // Main Initialization Function
 function initializeApp() {
@@ -51,6 +52,12 @@ function handlePopState(event) {
 
 // Load Content
 function loadContent(url) {
+  if (isLoading) {
+    console.log("Content is already loading. Ignoring this request.");
+    return;
+  }
+
+  isLoading = true;
   const main = document.querySelector("main");
   console.log(`Loading content from ${url}`);
   fetch(url)
@@ -65,7 +72,10 @@ function loadContent(url) {
       setupFormListeners();
       setupExploreMoreButtons();
     })
-    .catch((error) => console.error(`Error loading ${url}:`, error));
+    .catch((error) => console.error(`Error loading ${url}:`, error))
+    .finally(() => {
+      isLoading = false;
+    });
 }
 
 // Include HTML Content
@@ -156,7 +166,7 @@ function validateName() {
 
   const alphabetRegex = /^[a-zA-Z\s]*$/;
 
-  if (nameValue.length >=2 && alphabetRegex.test(nameValue)) {
+  if (nameValue.length >= 2 && alphabetRegex.test(nameValue)) {
     name.classList.add("is-valid");
     name.classList.remove("is-invalid");
   } else {
@@ -164,7 +174,6 @@ function validateName() {
     name.classList.remove("is-valid");
   }
 }
-
 
 //   if (name.value.trim().length >= 2) {
 //     name.classList.add("is-valid");
