@@ -103,27 +103,36 @@ function setActiveNavItem() {
     currentLocation.endsWith("/") || currentLocation.endsWith("/index.html");
 
   console.log(`Setting active navigation item for ${currentLocation}`);
+
   menuItems.forEach((menuItem, index) => {
     if ((isRootPage && index === 0) || menuItem.href === currentLocation) {
       menuItem.classList.add("active");
     } else {
       menuItem.classList.remove("active");
     }
-
-    // Add click event listener to each navigation link
-    menuItem.addEventListener("click", function (event) {
-      event.preventDefault();
-      const url = this.getAttribute("href");
-      navigateTo(url);
-
-      // Close the mobile menu after navigation
-      const navbarToggler = document.querySelector(".navbar-toggler");
-      const navbarCollapse = document.querySelector(".navbar-collapse");
-      if (navbarCollapse.classList.contains("show")) {
-        navbarToggler.click();
-      }
-    });
   });
+
+  // Remove existing event listener
+  const nav = document.querySelector("nav");
+  nav.removeEventListener("click", handleNavClick);
+  // Add new event listener to the nav element
+  nav.addEventListener("click", handleNavClick);
+}
+
+function handleNavClick(event) {
+  const target = event.target;
+  if (target.classList.contains("nav-link")) {
+    event.preventDefault();
+    const url = target.getAttribute("href");
+    navigateTo(url);
+
+    // Close the mobile menu after navigation
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    if (navbarCollapse.classList.contains("show")) {
+      navbarToggler.click();
+    }
+  }
 }
 
 // Initialize Bootstrap Carousel
@@ -144,10 +153,6 @@ function initializeCarousel() {
 }
 
 //contact us page form validation//
-
-document.getElementById("email").addEventListener("input", validateEmail);
-document.getElementById("name").addEventListener("input", validateName);
-document.getElementById("message").addEventListener("input", validateMessage);
 
 function validateEmail() {
   const email = document.getElementById("email");
@@ -216,6 +221,11 @@ function formValidation() {
 // Setup form listeners
 function setupFormListeners() {
   if (currentPathname === "/contact.html") {
+    document.getElementById("email").addEventListener("input", validateEmail);
+    document.getElementById("name").addEventListener("input", validateName);
+    document
+      .getElementById("message")
+      .addEventListener("input", validateMessage);
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
       contactForm.addEventListener("submit", handleFormSubmission);
