@@ -694,3 +694,29 @@ form {
     margin-bottom: 1.5rem;
     color: var(--text-color); /* Optional: Use your theme's text color */
 }
+
+/* Add these styles to your CSS */
+
+/* Ensure buttons are adjacent */
+.button-container {
+    display: flex;
+    gap: 15px; /* Adds space between the two buttons */
+    justify-content: center; /* Centers the buttons in their container */
+    margin-top: 20px; /* Optional: Space above the buttons */
+}
+
+/* Styling for the Volunteer button */
+.volunteer-button {
+    background-color: var(--secondary-color); /* Make the volunteer button a different color */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.volunteer-button:hover {
+    background-color: var( --secondary-color);; /* Darken the primary color on hover */
+}
+
