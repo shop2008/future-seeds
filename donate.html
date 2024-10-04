@@ -70,18 +70,18 @@
                     </div>
                     <div class="form-group">
                         <label for="cardNumber" class="formko">Card Number</label>
-                        <input type="text" class="form-control" id="cardNumber" placeholder="Enter your card number" required>
+                        <input type="float" class="form-control" id="cardNumber" placeholder="Enter your card number" required maxlength="16">
                         <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
                     </div>
                     <div class="form-group">
                         <label for="expiryDate" class="formko">Expiration Date</label>
-                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required maxlength="5" >
                         <div class="invalid-feedback">Please enter a valid expiration date (MM/YY).</div>
                     </div>
                     
                     <div class="form-group position-relative">
                         <label for="cvv" class="formko">CVV</label>
-                        <input type="password" class="form-control" id="cvv" placeholder="CVV" required>
+                        <input type="password" class="form-control" id="cvv" placeholder="CVV" required maxlength="3">
                         <span class="toggle-cvv-eye">
                             <i id="cvv-eye" class="fas fa-eye-slash"></i>
                         </span>

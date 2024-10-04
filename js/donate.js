@@ -23,6 +23,20 @@ document.querySelectorAll('input[name="donationType"]').forEach(button => {
     });
 });
 
+document.getElementById("expiryDate").addEventListener("input", function(e) {
+    let input = e.target.value;
+
+    // Add slash automatically after typing two digits
+    if (input.length === 2 && !input.includes("/")) {
+        e.target.value = input + "/";
+    }
+
+    // Remove slash when backspacing from the year section
+    if (input.length === 3 && input[2] === "/") {
+        e.target.value = input.substring(0, 2);
+    }
+});
+
 // Ensure initial state is correct (in case the page loads with a checked button)
 if (document.getElementById('oneTime').checked) {
     oneTimeButton.classList.add('active');
