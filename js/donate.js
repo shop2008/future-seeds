@@ -3,23 +3,77 @@ document.addEventListener('DOMContentLoaded', function () {
     const customAmountInput = document.getElementById('customAmount');
     const selectedAmountDisplay = document.getElementById('selectedAmount');
     const donationForm = document.getElementById('donationForm');
+    const oneTimeButton = document.querySelector('label[for="oneTime"]');
+    const monthlyButton = document.querySelector('label[for="monthly"]');
+    const amountAlert = document.getElementById('amountAlert');
     let selectedAmount = 20; // Default amount
+
+    // Handle donation type button clicks
+// Handle donation type button clicks
+document.querySelectorAll('input[name="donationType"]').forEach(button => {
+    button.addEventListener('change', function () {
+        // Toggle active state for One-Time and Monthly buttons
+        if (this.id === 'oneTime') {
+            oneTimeButton.classList.add('active');
+            monthlyButton.classList.remove('active');
+        } else {
+            monthlyButton.classList.add('active');
+            oneTimeButton.classList.remove('active');
+        }
+    });
+});
+
+// Ensure initial state is correct (in case the page loads with a checked button)
+if (document.getElementById('oneTime').checked) {
+    oneTimeButton.classList.add('active');
+} else {
+    monthlyButton.classList.add('active');
+}
 
     // Handle donation amount button clicks
     amountButtons.forEach(button => {
         button.addEventListener('click', function () {
-            selectedAmount = parseInt(this.getAttribute('data-amount'));
+            selectedAmount = parseInt(this.getAttribute('data-amount'), 10);
             customAmountInput.value = ''; // Clear custom amount when a button is clicked
-            selectedAmountDisplay.innerText = `$${selectedAmount}`;
+            selectedAmountDisplay.innerText = `$${selectedAmount}`; // Ensure dollar sign is shown
+            amountAlert.classList.add('d-none'); // Hide any previous error message
+
+            // Remove active class from all amount buttons
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to the clicked button
+            this.classList.add('active');
         });
     });
 
     // Handle custom amount input
     customAmountInput.addEventListener('input', function () {
         const customAmount = parseFloat(customAmountInput.value);
-        if (customAmount > 0) {
+        if (customAmount >= 0) {
             selectedAmount = customAmount;
-            selectedAmountDisplay.innerText = `$${selectedAmount}`;
+            selectedAmountDisplay.innerText = `$${selectedAmount}`; // Ensure dollar sign is shown
+            amountAlert.classList.add('d-none'); // Hide any previous error message
+
+            // Remove active class from all buttons when custom amount is typed
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+        } else {
+            selectedAmountDisplay.innerText = '$0'; // Display $0 for invalid input
+            amountAlert.classList.remove('d-none'); // Show error message if the amount is invalid
+        }
+    });
+
+    // Eye icon toggle for CVV
+    const cvvInput = document.getElementById('cvv');
+    const eyeIcon = document.getElementById('cvv-eye');
+
+    eyeIcon.addEventListener('click', function () {
+        if (cvvInput.type === 'password') {
+            cvvInput.type = 'text'; // Show CVV
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye'); // Change to eye icon
+        } else {
+            cvvInput.type = 'password'; // Hide CVV
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash'); // Change to eye -slash icon
         }
     });
 
@@ -31,10 +85,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const isValid = validateForm();
 
         if (!isValid) {
-            // Prevent form submission if validation fails
-            donationForm.classList.add('was-validated');
+            donationForm.classList.add('was-validated'); // Show validation error
         } else {
-            showConfirmationModal(selectedAmount); // Show confirmation modal only if all fields are valid
+            showConfirmationModal(selectedAmount); // Show confirmation modal if all fields are valid
         }
     });
 
@@ -67,6 +120,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const cvv = document.getElementById('cvv');
         const cvvRegex = /^\d{3}$/;
         isValid = validateFieldWithRegex(cvv, cvvRegex, 'Please enter a valid 3-digit CVV.') && isValid;
+
+        // Validate the custom amount or selected amount
+        if (selectedAmount <= 0 || isNaN(selectedAmount)) {
+            amountAlert.classList.remove('d-none'); // Show alert if amount is invalid
+            isValid = false;
+        }
 
         return isValid; // Form will proceed only if all validations are true
     }
@@ -169,3 +228,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+
