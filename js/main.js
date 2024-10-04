@@ -63,6 +63,7 @@ function loadContent(url) {
   fetch(url)
     .then((response) => response.text())
     .then((data) => {
+      destroyCarousel();
       const parser = new DOMParser();
       const doc = parser.parseFromString(data, "text/html");
       main.innerHTML = doc.querySelector("main").innerHTML;
@@ -136,6 +137,8 @@ function handleNavClick(event) {
 }
 
 // Initialize Bootstrap Carousel
+let carouselInstance = null;
+
 function initializeCarousel() {
   const carouselElement = document.querySelector("#galleryCarousel");
   if (!carouselElement) {
@@ -143,13 +146,26 @@ function initializeCarousel() {
     return;
   }
 
+  if (carouselInstance) {
+    console.log("Carousel already initialized. Skipping initialization.");
+    return;
+  }
+
   console.log("Initializing Bootstrap Carousel");
 
-  const carousel = new bootstrap.Carousel(carouselElement, {
+  carouselInstance = new bootstrap.Carousel(carouselElement, {
     interval: 3000,
     wrap: true,
     keyboard: false,
   });
+}
+
+function destroyCarousel() {
+  if (carouselInstance) {
+    carouselInstance.dispose();
+    carouselInstance = null;
+    console.log("Carousel destroyed");
+  }
 }
 
 //contact us page form validation//
