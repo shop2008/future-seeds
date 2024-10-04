@@ -83,13 +83,13 @@ footer {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    --bs-btn-active-bg: var(--secondary-color);
-    --bs-btn-active-border-color: var(--secondary-color);
+    --bs-btn-active-bg: #e3461b;
+    --bs-btn-active-border-color: #e3461b;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    background-color: #e3461b;
+    border-color: #e3461b;
     filter: brightness(90%);
     box-shadow: none;
     transform: translateY(-2px);
@@ -347,6 +347,7 @@ footer {
 .card {
     height: 100%;
     transition: transform 0.3s ease-in-out;
+    background-color: #fefcf3;
 }
 
 .card:hover {
@@ -1021,4 +1022,18 @@ form {
 .custom-amount::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.card-img-container {
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-img-container img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.progress-bar.bg-primary {
+    background-color: var(--primary-color) !important;
 }
