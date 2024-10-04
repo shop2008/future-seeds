@@ -9,10 +9,10 @@ let isLoading = false;
 function initializeApp() {
   includeHTML("body > header", "header.html", () => {
     setActiveNavItem();
-    setupEventListeners();
-    setupFormListeners();
   });
   includeHTML("body > footer", "footer.html");
+  setupEventListeners();
+  setupFormListeners();
 }
 
 // Event Listeners Setup
@@ -236,16 +236,21 @@ function formValidation() {
 
 // Setup form listeners
 function setupFormListeners() {
-  if (currentPathname === "/contact.html") {
-    document.getElementById("email").addEventListener("input", validateEmail);
-    document.getElementById("name").addEventListener("input", validateName);
-    document
-      .getElementById("message")
-      .addEventListener("input", validateMessage);
-    const contactForm = document.getElementById("contactForm");
-    if (contactForm) {
-      contactForm.addEventListener("submit", handleFormSubmission);
-    }
+  const emailElement = document.getElementById("email");
+  if (emailElement) {
+    emailElement.addEventListener("input", validateEmail);
+  }
+  const nameElement = document.getElementById("name");
+  if (nameElement) {
+    nameElement.addEventListener("input", validateName);
+  }
+  const messageElement = document.getElementById("message");
+  if (messageElement) {
+    messageElement.addEventListener("input", validateMessage);
+  }
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", handleFormSubmission);
   }
 }
 
