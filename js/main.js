@@ -13,6 +13,7 @@ function initializeApp() {
   includeHTML("body > footer", "footer.html");
   setupEventListeners();
   setupFormListeners();
+  AOS.init();
 }
 
 // Event Listeners Setup

@@ -92,6 +92,7 @@ footer {
     border-color: var(--secondary-color);
     filter: brightness(90%);
     box-shadow: none;
+    transform: translateY(-2px);
 }
 
 /* Header Styles */
@@ -820,6 +821,11 @@ form {
 }
 
 /* For donation type buttons */
+.btn-check:checked + .custom-btn-green {
+    background-color: var(--primary-color); /* Primary color background when checked */
+    color: white; /* White text when active */
+}
+
 .custom-btn-green[type="radio"] + label {
     background-color: white; /* Default white background */
     color: var(--secondary-color); /* Grey text */
