@@ -119,7 +119,7 @@ if (document.getElementById('oneTime').checked) {
         // Validate CVV with regex (3 digits)
         const cvv = document.getElementById('cvv');
         const cvvRegex = /^\d{3}$/;
-        isValid = validateFieldWithRegex(cvv, cvvRegex, 'Please enter a valid cvv).') && isValid;
+        isValid = validateFieldWithRegex(cvv, cvvRegex) && isValid;
 
         // Validate the custom amount or selected amount
         if (selectedAmount <= 0 || isNaN(selectedAmount)) {

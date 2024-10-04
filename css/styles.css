@@ -446,7 +446,7 @@ form {
 
 .form-control,
 #message {
-    margin-bottom: 16px; /* Add spacing between form elements */
+    margin-bottom: 10px; /* Add spacing between form elements */
     padding: 10px;       /* Increase padding for input fields */
     border-radius: 8px;  /* Slightly round input corners */
     border: 1px solid #ccc;
@@ -860,6 +860,28 @@ form {
     color: white; /* White text on hover */
 }
 
+/* Align the selected amount text properly */
+.selected-amount-container {
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#selectedAmount {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00715D; /* or your primary color */
+    
+}
+
+.selected-amount-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333; /* or your preferred label color */
+}
+
+
 /* Responsive Design Adjustments */
 /* Responsive Design for Donation Form */
 @media (max-width: 768px) {
@@ -922,12 +944,26 @@ form {
     }
 
     /* Ensure the selected amount text takes full width and aligns properly */
-    #selectedAmount {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 18px;
-    }
+   /* Align the selected amount text properly */
+.selected-amount-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#selectedAmount {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00715D; /* or your primary color */
+    margin-left: 5px; /* Space between "Selected Amount:" and amount */
+}
+
+.selected-amount-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333; /* or your preferred label color */
+}
+
 }
 
 /* Default Styling for larger screens */
