@@ -13,7 +13,9 @@ function initializeApp() {
   includeHTML("body > footer", "footer.html");
   setupEventListeners();
   setupFormListeners();
-  AOS.init();
+  if (typeof AOS !== "undefined") {
+    AOS.init();
+  }
 }
 
 // Event Listeners Setup
@@ -73,6 +75,9 @@ function loadContent(url) {
       window.scrollTo(0, 0);
       setupFormListeners();
       setupExploreMoreButtons();
+      if (typeof AOS !== "undefined") {
+        AOS.init();
+      }
     })
     .catch((error) => console.error(`Error loading ${url}:`, error))
     .finally(() => {
