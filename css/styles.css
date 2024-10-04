@@ -92,6 +92,7 @@ footer {
     border-color: var(--secondary-color);
     filter: brightness(90%);
     box-shadow: none;
+    transform: translateY(-2px);
 }
 
 /* Header Styles */
@@ -449,7 +450,7 @@ form {
 
 .form-control,
 #message {
-    margin-bottom: 16px; /* Add spacing between form elements */
+    margin-bottom: 10px; /* Add spacing between form elements */
     padding: 10px;       /* Increase padding for input fields */
     border-radius: 8px;  /* Slightly round input corners */
     border: 1px solid #ccc;
@@ -824,6 +825,11 @@ form {
 }
 
 /* For donation type buttons */
+.btn-check:checked + .custom-btn-green {
+    background-color: var(--primary-color); /* Primary color background when checked */
+    color: white; /* White text when active */
+}
+
 .custom-btn-green[type="radio"] + label {
     background-color: white; /* Default white background */
     color: var(--secondary-color); /* Grey text */
@@ -857,6 +863,28 @@ form {
     background-color: var(--primary-color); /* Green background on hover */
     color: white; /* White text on hover */
 }
+
+/* Align the selected amount text properly */
+.selected-amount-container {
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#selectedAmount {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00715D; /* or your primary color */
+    
+}
+
+.selected-amount-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333; /* or your preferred label color */
+}
+
 
 /* Responsive Design Adjustments */
 /* Responsive Design for Donation Form */
@@ -920,12 +948,26 @@ form {
     }
 
     /* Ensure the selected amount text takes full width and aligns properly */
-    #selectedAmount {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 18px;
-    }
+   /* Align the selected amount text properly */
+.selected-amount-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#selectedAmount {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00715D; /* or your primary color */
+    margin-left: 5px; /* Space between "Selected Amount:" and amount */
+}
+
+.selected-amount-label {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333; /* or your preferred label color */
+}
+
 }
 
 /* Default Styling for larger screens */
