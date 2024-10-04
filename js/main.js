@@ -251,3 +251,6 @@ function handleFormSubmission(event) {
     console.log("Form is not valid!");
   }
 }
+
+// Attach form submission listener
+document.getElementById("contactForm").addEventListener("submit", handleFormSubmission);
