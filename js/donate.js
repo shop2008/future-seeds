@@ -225,6 +225,7 @@ if (document.getElementById('oneTime').checked) {
             onConfirm: function () {
                 window.location.href = 'index.html'; // Redirect to home page
             }
+            
         });
     }
 });
