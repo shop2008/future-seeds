@@ -256,6 +256,10 @@ footer {
     background-color: var(--background-color);
     padding: 60px 20px;
   }
+  .projecth2{
+    font-weight: 700;
+    font-size: 34px;
+  }
   
   .featured-project-content {
     display: flex;
@@ -478,7 +482,7 @@ form {
 }
 
 .submit_button:hover{
-    background-color: #e3461b;
+    background-color: #e3461b; 
     /* transform: scale(1.02); */
     color: #ffffff; 
 }
