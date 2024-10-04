@@ -176,6 +176,7 @@ footer {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    
 }
 .mv img {
     width: 100%;
@@ -592,11 +593,17 @@ form {
 }
 
 .btn-group .btn {
-    width: 120px; /* Wider button size for donation amounts */
+    width: auto; /* Let the buttons take natural size or apply flex-grow-1 in HTML */
     padding: 10px;
     font-size: 16px;
     border-radius: 8px; /* Rounded corners for buttons */
     transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-grow: 1; /* Ensure they distribute evenly */
+    margin-right: 10px; /* Ensure space between buttons */
+}
+
+.btn-group .btn:last-child {
+    margin-right: 0; /* Remove margin from the last button */
 }
 
 .btn-group .btn:hover {
@@ -605,34 +612,97 @@ form {
     color: white;
 }
 
-#customAmount {
-    width: 150px; /* Custom amount input size */
+/* Hide the spinner on the custom amount field */
+.custom-amount::-webkit-outer-spin-button,
+.custom-amount::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
+
+
 
 .modal-header {
     background-color: #00715D; /* Consistent modal header color */
     color: white;
 }
 
-#amountAlert {
-    margin-top: 1rem; /* Space above the alert */
-    font-size: 14px;
-    color: #E17153; /* Use secondary color for alerts */
+.amount-options {
+    display: flex;
+    gap: 10px;
 }
+
+.amount-btn {
+    padding: 10px 20px;
+    border: var(--primary-color);
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.amount-btn:hover {
+    background-color:var(--primary-color);;
+    color: #fff;
+}
+
+#customAmount {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 150px;
+}
+
+#customAmount.is-invalid {
+    border-color: red;
+}
+
+#customAmount.is-valid {
+    border-color: green;
+}
+
+.alert {
+    color: red;
+    font-size: 14px;
+}
+
+.alert.d-none {
+    display: none;
+}
+
+/* Ensure the form group uses relative positioning */
+.form-group {
+    position: relative;
+}
+
+/* Eye Icon Positioning inside CVV input */
+.toggle-cvv-eye {
+    position: absolute;
+    top: 75%;
+    right: 10px; /* Positioned inside the input on the right */
+    transform: translateY(-50%); /* Ensures vertical alignment */
+    cursor: pointer;
+    color: black; /* Color of the eye icon */
+    z-index: 1; /* Ensure it's on top of the input */
+}
+
+/* Adjust the icon size if needed */
+.toggle-cvv-eye i {
+    font-size: 18px;
+}
+
+/* Make sure the input field has padding on the right to fit the icon */
+#cvv {
+    padding-right: 40px; /* Add space for the eye icon inside the input */
+}
+
+
 
 /* Responsive Design for donation layout */
-@media (max-width: 768px) {
-    .donation-options {
-        flex-direction: column; /* Stack the buttons vertically on smaller screens */
-    }
 
-    .btn-group .btn {
-        width: 100%; /* Full width on smaller screens */
-    }
-}
+
+
 
 .form-group {
-    margin-bottom: 1.5rem; /* Adds spacing between form groups */
+    margin-bottom: 2.5rem; /* Adds spacing between form groups */
 }
 
 .donation-type {
@@ -724,4 +794,185 @@ form {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Custom button styles */
+.custom-btn-green {
+    border: 2px solid var(--primary-color); /* Green border */
+    background-color: white; /* Default white background */
+    color: var(--primary-color); /* Green text */
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%; /* Ensure full width */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.custom-btn-green:hover {
+    background-color: var(--primary-color); /* Green background on hover */
+    color: white; /* White text on hover */
+}
+
+.custom-btn-green.active, .custom-btn-green:active {
+    background-color: var(--primary-color); /* Green background when active */
+    color: white; /* White text when active */
+}
+
+/* For donation type buttons */
+.custom-btn-green[type="radio"] + label {
+    background-color: white; /* Default white background */
+    color: var(--secondary-color); /* Grey text */
+    border: 2px solid var(--primary-color); /* Green border */
+}
+
+.custom-btn-green[type="radio"]:checked + label {
+    background-color: var(--primary-color); /* Green background */
+    color: white; /* White text when active */
+}
+
+.custom-btn-green[type="radio"]:hover + label {
+    background-color: var(--primary-color); /* Green background on hover */
+    color: white; /* White text on hover */
+}
+
+/* Amount buttons specific styles */
+.amount-btn.custom-btn-green {
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color); /* Default green */
+    background-color: white;
+}
+
+.amount-btn.custom-btn-green.active {
+    background-color: var(--primary-color); /* Green background when active */
+    color: white;
+}
+
+.amount-btn.custom-btn-green:hover {
+    background-color: var(--primary-color); /* Green background on hover */
+    color: white; /* White text on hover */
+}
+
+/* Responsive Design Adjustments */
+/* Responsive Design for Donation Form */
+@media (max-width: 768px) {
+    /* Ensure the form container takes full width */
+    .form_container {
+        width: 100%;
+        max-width: 100%; /* Remove max-width for smaller screens */
+        padding: 0 20px; /* Add padding for better spacing */
+    }
+
+    /* Stack the donation type buttons vertically on smaller screens */
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Ensure the One-Time and Monthly buttons take full width */
+    .btn-group .custom-btn-green {
+        width: 100%; /* Full width for buttons */
+        margin-bottom: 10px; /* Add space between buttons */
+    }
+
+    /* Stack the donation amount buttons vertically on smaller screens */
+    .amount-options {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Add some space between buttons */
+    }
+
+    /* Ensure the donation amount buttons take full width */
+    .amount-btn.custom-btn-green {
+        width: 100%; /* Full width for buttons */
+    }
+
+    /* Adjust custom amount input to take full width */
+    .custom-amount {
+        width: 100%;
+        margin-top: 10px; /* Add space between the amount buttons and custom input */
+    }
+
+    /* Adjust the header text to fit smaller screens */
+    .donation-header h1 {
+        font-size: 1.8rem; /* Adjust font size */
+        text-align: center;
+    }
+
+    .donation-header p {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    /* Ensure input fields take full width */
+    .form-control {
+        width: 100%; /* Full width for input fields */
+    }
+
+    /* Adjust padding for the Donate Now button */
+    .btn-primary {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    /* Ensure the selected amount text takes full width and aligns properly */
+    #selectedAmount {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+}
+
+/* Default Styling for larger screens */
+.form_container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Donation buttons default styling */
+.custom-btn-green {
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.custom-btn-green.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Amount buttons default styling */
+.amount-btn.custom-btn-green {
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: white;
+}
+
+.amount-btn.custom-btn-green.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Ensure the donation container stays centered */
+.donation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 80vh; /* Ensures the form takes up most of the viewport height */
+}
+
+/* Hide the spinner on custom amount input field */
+.custom-amount::-webkit-outer-spin-button,
+.custom-amount::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
