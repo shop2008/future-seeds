@@ -33,4 +33,3 @@ FutureSeeds is a responsive web application built using HTML, CSS, and JavaScrip
 ## License
 
 This project is licensed under the MIT License.
-test
