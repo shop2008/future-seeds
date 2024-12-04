@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No installation required for static website"
+  
+  pre_build:
+    commands:
+      - echo "Preparing to build static website"
+  
+  build:
+    commands:
+      - echo "Build started on `date`"
+  
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  files:
+    # Include all HTML, CSS, and JS files
+    - '**/*.html'
+    - '**/*.css'
+    - '**/*.js'
+    - '**/*.png'
+    - '**/*.jpg'
+    - '**/*.jpeg'
