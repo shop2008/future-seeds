@@ -6,12 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const oneTimeButton = document.querySelector('label[for="oneTime"]');
   const monthlyButton = document.querySelector('label[for="monthly"]');
   const amountAlert = document.getElementById('amountAlert');
+  let donationType = 'oneTime';
   let selectedAmount = 20; // Default amount
 
   // Handle donation type button clicks
   // Handle donation type button clicks
   document.querySelectorAll('input[name="donationType"]').forEach((button) => {
     button.addEventListener('change', function () {
+      donationType = this.id;
       // Toggle active state for One-Time and Monthly buttons
       if (this.id === 'oneTime') {
         oneTimeButton.classList.add('active');
@@ -211,13 +213,11 @@ document.addEventListener('DOMContentLoaded', function () {
       },
     });
   }
+  console.log(donationType);
 
   // Function to send donation data to Lambda
   function sendDonation(amount) {
     // Gather data from form inputs
-    const donationType = document.querySelector(
-      'input[name="donationType"]:checked'
-    )?.value;
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const email = document.getElementById('email').value.trim();
